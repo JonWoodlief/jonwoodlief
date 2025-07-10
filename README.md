@@ -1,8 +1,10 @@
 ## Hi there 👋
 
-I'm currently a software engineer on IBM's Cloud Platform. My first area of expertise in technology was with Kubernetes. I have leveraged that specialization as a developer of integrations with Kubernetes, as an SRE running a critical high capacity service, and as a security architect working to meet security standards across many governments and industries.
+I got started in technology with an obsession of Linux. Linux led me to Kubernetes, and Kubernetes led me to cloud.
 
-I'm very interested in the application of AI, and I do a lot of research in Agentic AI, MCP, and more.
+In my career working in IBM's Cloud Platform- I have written APIs, filed patents, replatformed systems that see thousands of requests per second, and represented the company in audits.
+
+My latest interest is in AI- specifically in building AI-native APIs and UIs.
 
 ## Blog
 
