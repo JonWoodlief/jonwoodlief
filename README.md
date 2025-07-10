@@ -8,4 +8,4 @@ My latest interest is in AI- specifically in building AI-native APIs and UIs.
 
 ## Blog
 
-- [MCP vs HATEOAS](https://jonwoodlief.github.io/jonwoodlief/mcp-vs-hateoas-blog.html)
+- [The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity](https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html)
