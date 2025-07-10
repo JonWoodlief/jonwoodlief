@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCP and RESTful APIs: A resurfacing of HATEOAS in the AI era</title>
+    <title>The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity</title>
     <style>
         body {
             font-family: Georgia, serif;
@@ -41,10 +41,11 @@
         }
         
         .highlight {
-            background-color: #f39c12;
+            background-color: #e8f4f8;
             padding: 2px 4px;
             border-radius: 3px;
-            color: white;
+            color: #2c5282;
+            font-weight: 600;
         }
         
         .inline-code {
@@ -54,27 +55,45 @@
             font-family: 'Courier New', monospace;
             color: #e74c3c;
         }
+        
+        /* Syntax highlighting styles */
+        .token.comment { color: #6a9955; }
+        .token.string { color: #ce9178; }
+        .token.number { color: #b5cea8; }
+        .token.boolean { color: #569cd6; }
+        .token.null { color: #569cd6; }
+        .token.keyword { color: #c586c0; }
+        .token.property { color: #9cdcfe; }
+        .token.function { color: #dcdcaa; }
+        .token.punctuation { color: #d4d4d4; }
+        .token.operator { color: #d4d4d4; }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
 </head>
 <body>
-    <h1>MCP vs RESTful APIs: How HATEOAS Becomes Relevant Again in the AI Era</h1>
+    <h1>The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity</h1>
     
-    <p>When Roy Fielding <a href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm" target="_blank" rel="noopener">introduced REST in his dissertation</a>, he outlined a clear architectural vision with three maturity levels that most developers recognize today:</p>
+    <p>Most REST APIs today are incomplete. We build APIs that expose resources (Level 1) and use HTTP verbs correctly (Level 2), but we stop there. We skip Level 3 - the one that tells clients what they can actually do next.</p>
+    
+    <p>When Roy Fielding <a href="https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm" target="_blank" rel="noopener">introduced REST in his dissertation</a>, he outlined three maturity levels:</p>
     
     <ul>
         <li><strong>Level 1:</strong> Resources - Everything has a URL</li>
         <li><strong>Level 2:</strong> HTTP Verbs - Use GET, POST, PUT, DELETE properly</li>
-        <li><strong>Level 3:</strong> Hypermedia As the Engine of Application State , or <span class="highlight">HATEOAS</span></li>
+        <li><strong>Level 3:</strong> Hypermedia As the Engine of Application State, or <span class="highlight">HATEOAS</span></li>
     </ul>
     
-    <p>While levels 1 and 2 have been adopted by industry, level 3 remains an academic ideal.
+    <p>For decades, Level 3 remained an academic curiosity. Human developers didn't need it - they could parse extensive documentation and maintain context across complex workflows. But AI agents thrive on targeted, structured input delivered precisely when needed. They excel when APIs can provide exactly the right information at exactly the right moment.</p>
 
     <h2>What is HATEOAS?</h2>
 
-    <p>Hypermedia as the Engine of Application State is the principle that APIs should tell clients what actions are available through embedded links</p>
+    <p>Hypermedia as the Engine of Application State is the principle that APIs should tell clients what actions are available through embedded links. Instead of clients needing to know all possible endpoints upfront, the API response includes navigation instructions - like a GPS for your API interactions.</p>
 
     <div class="code-block">
-// HATEOAS response example - positive balance
+<pre><code class="language-javascript">// HATEOAS response example - positive balance
 {
   "accountId": "acc-123",
   "accountHolder": "John Doe",
@@ -110,7 +129,7 @@
       "method": "POST"
     }
   }
-}
+}</code></pre>
     </div>
 
     <p>This demonstrates HATEOAS in action: when the account has a positive balance, both deposit and withdraw operations are available. But when the account is in overdraft, only the deposit link appears - the server dynamically controls what actions are possible based on the current state.</p>
@@ -121,10 +140,10 @@
     
     <h2>What is MCP?</h2>
 
-    <p>The Model Context Protocol (MCP) is a new approach to API discoverability designed specifically for machine clients, particularly AI agents. It allows these agents to dynamically discover available actions, data types, and workflows at runtime.</p>
+    <p>The Model Context Protocol (MCP) is a new approach to API discoverability designed specifically for machine clients, particularly AI agents. Unlike traditional APIs that require upfront knowledge of available endpoints, MCP allows agents to ask "what can I do?" and receive structured, actionable responses at runtime.</p>
 
     <div class="code-block">
-// MCP list tools request
+<pre><code class="language-json">// MCP list tools request
 {
   "jsonrpc": "2.0",
   "id": 1,
@@ -168,23 +187,23 @@
       }
     ]
   }
-}
+}</code></pre>
     </div>
 
     <p>This demonstrates MCP's dynamic tool discovery - the AI agent queries available tools at runtime</p>
 
-    <h2>MCP succeeds, not because it's better than HATEOAS, but because it's more timely</h2>
+    <h2>HATEOAS Concepts Find Their Purpose with AI</h2>
 
-    <p>While HATEOAS failed because human developers don't need runtime discoverability- MCP succeeds because AI needs it</p>
+    <p>While HATEOAS struggled to find adoption because human developers don't need runtime discoverability, MCP succeeds because AI agents thrive on it. The same principle that seemed unnecessary for humans becomes essential for machines.</p>
 
-    <p>HATEOAS was ahead of it's time. What was once an academic consideration is now a practical one. HATEOAS may find new life as a model that facilitates AI-driven interactions with APIs.</p>
+    <p>HATEOAS was ahead of its time. What was once an academic consideration is now a practical necessity. The structured, state-aware navigation that HATEOAS promised is exactly what AI agents need to operate effectively in complex systems.</p>
 
     <h2>Dynamic Integration: MCP + HATEOAS in Practice</h2>
     
     <p>The real power emerges when we combine MCP's discovery capabilities with HATEOAS's state-driven navigation. My implementation demonstrates this by creating an MCP server that dynamically adapts its tool offerings based on the current state of a HATEOAS API.</p>
     
     <div class="code-block">
-// MCP server discovers available actions from HATEOAS API
+<pre><code class="language-javascript">// MCP server discovers available actions from HATEOAS API
 async discover_links() {
     const response = await this.client.get('/account');
     const data = response.json();
@@ -214,7 +233,7 @@ _generate_tools_from_links() {
         });
     }
     return tools;
-}
+}</code></pre>
     </div>
     
     <p>This creates a feedback loop where:</p>
@@ -226,7 +245,7 @@ _generate_tools_from_links() {
     </ul>
     
     <div class="code-block">
-// Example: Account with positive balance
+<pre><code class="language-javascript">// Example: Account with positive balance
 GET /account
 {
   "balance": 1250.75,
@@ -250,7 +269,7 @@ POST /account/withdraw {"amount": 1300}
 }
 
 // MCP tools available: ["self", "deposit"]
-// AI agent automatically loses withdraw capability
+// AI agent automatically loses withdraw capability</code></pre>
     </div>
     
     <p>This architecture enables AI agents to understand not just what actions exist, but <span class="highlight">when they're contextually appropriate</span>. The agent doesn't need to understand business rules - it simply adapts to what the API makes available.</p>
@@ -258,5 +277,12 @@ POST /account/withdraw {"amount": 1300}
     <p>The implementation in <span class="inline-code">mcp-server.py</span> shows how this works in practice: the MCP server polls the HATEOAS API, regenerates its tool list based on available links, and notifies connected AI agents when capabilities change. This creates a truly dynamic, state-aware AI-API interaction model.</p>
     
     <p>You can find the complete implementation and examples at <a href="https://github.com/JonWoodlief/MCP-for-tier3-REST" target="_blank" rel="noopener">https://github.com/JonWoodlief/MCP-for-tier3-REST</a>.</p>
+
+<script>
+    // Initialize Prism syntax highlighting
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
+</script>
 </body>
 </html>
