@@ -9,3 +9,8 @@ My latest interest is in AI- specifically in building AI-native APIs and UIs.
 ## Blog
 
 - [The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity](https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html)
+
+## Links
+
+- [github](https://github.com/JonWoodlief/)
+- [linkedin](https://www.linkedin.com/in/jonwoodlief/)
