@@ -8,6 +8,7 @@ My latest interest is in AI- specifically in building AI-native APIs and UIs.
 
 ## Blog
 
+- [Bring Your Own MCP](https://jonwoodlief.github.io/jonwoodlief/bring-your-own-mcp.html)
 - [The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity](https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html)
 
 ## Links
