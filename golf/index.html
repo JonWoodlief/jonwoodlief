@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Simulator</title>
+    <link rel="stylesheet" href="main.min.css">
+</head>
+<body>
+    <div id="container"></div>
+    <div id="controls">
+        <h3>Club Selection</h3>
+        <div class="control-group">
+            <label for="clubSelect">Club:</label>
+            <select id="clubSelect">
+                <option value="driver">Driver</option>
+                <option value="3wood">3-Wood</option>
+                <option value="5iron">5-Iron</option>
+                <option value="6iron">6-Iron</option>
+                <option value="7iron">7-Iron</option>
+                <option value="8iron">8-Iron</option>
+                <option value="9iron">9-Iron</option>
+                <option value="pw">Pitching Wedge</option>
+                <option value="sw">Sand Wedge</option>
+                <option value="lw">Lob Wedge</option>
+                <option value="chip">Chip Shot</option>
+            </select>
+        </div>
+        <button id="hitBall">Hit Ball</button>
+    </div>
+    <div id="metrics">
+        <h3>Shot Metrics</h3>
+        <div class="metric">
+            <span class="label">Ball Speed:</span>
+            <span class="value" id="ballSpeed">--</span>
+        </div>
+        <div class="metric">
+            <span class="label">Launch Angle:</span>
+            <span class="value" id="launchAngle">--</span>
+        </div>
+        <div class="metric">
+            <span class="label">Launch Direction:</span>
+            <span class="value" id="launchDirection">--</span>
+        </div>
+        <div class="metric">
+            <span class="label">Spin Rate:</span>
+            <span class="value" id="spinRate">--</span>
+        </div>
+        <div class="metric">
+            <span class="label">Spin Axis:</span>
+            <span class="value" id="spinAxis">--</span>
+        </div>
+        <hr style="margin: 10px 0; border-color: #555;">
+        <div class="metric">
+            <span class="label">Carry Distance:</span>
+            <span class="value" id="carryDistance">-- yds</span>
+        </div>
+        <div class="metric">
+            <span class="label">Total Distance:</span>
+            <span class="value" id="totalDistance">-- yds</span>
+        </div>
+        <hr style="margin: 10px 0; border-color: #555;">
+        <div class="metric">
+            <span class="label">Distance to Pin:</span>
+            <span class="value" id="distanceToPin">-- yds</span>
+        </div>
+        <hr style="margin: 10px 0; border-color: #555;">
+        <div class="metric">
+            <span class="label">Strokes:</span>
+            <span class="value" id="strokes">0</span>
+        </div>
+        <div class="metric">
+            <span class="label">Score:</span>
+            <span class="value" id="score">--</span>
+        </div>
+    </div>
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+    <script src="golf-simulator.min.js"></script>
+    <script src=""></script>
+</body>
+</html>
