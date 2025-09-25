@@ -1,6 +1,7 @@
 ## Blog
 
 - [Bring Your Own MCP](https://jonwoodlief.github.io/jonwoodlief/bring-your-own-mcp.html)
+- [Gmail MCP Provider: Distributable Email Access](https://jonwoodlief.github.io/jonwoodlief/gmail-mcp.html)
 - [The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity](https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html)
 
 ## Links
