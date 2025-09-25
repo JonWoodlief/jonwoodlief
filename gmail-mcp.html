@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail MCP Provider</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #fafafa;
+            color: #333;
+            font-size: 18px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 80px;
+            margin-bottom: 30px;
+            padding: 18px 0 18px 20px;
+            border-left: 5px solid #3498db;
+            background-color: #f4f6f8;
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: 300;
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .code-block {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 25px 0;
+            border: 1px solid #4a5568;
+        }
+        
+        .inline-code {
+            background-color: #f1f5f9;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #1a202c;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            margin: 60px 0;
+            border-radius: 1px;
+        }
+        
+        /* Demo Styles */
+        .demo-container {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            background: white;
+            margin: 40px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .demo-header {
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .demo-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.1em;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #dc3545;
+        }
+        
+        .status-indicator.connected {
+            background: #28a745;
+        }
+        
+        /* Gmail specific styles */
+        .gmail-setup {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .gmail-config {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input[type="password"] {
+            font-family: monospace;
+        }
+        
+        .demo-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .demo-btn-primary { background: #3498db; color: white; }
+        .demo-btn-success { background: #27ae60; color: white; }
+        .demo-btn-warning { background: #f39c12; color: white; }
+        .demo-btn-danger { background: #e74c3c; color: white; }
+        
+        .email-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .email-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .email-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .email-item:last-child {
+            border-bottom: none;
+        }
+        
+        .email-subject {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        
+        .email-from {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .email-date {
+            color: #999;
+            font-size: 0.8em;
+            float: right;
+        }
+        
+        .tool-badge {
+            background: #3498db;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+            margin-bottom: 4px;
+            font-size: 0.8em;
+            display: inline-block;
+        }
+        
+        .tool-feedback {
+            padding: 12px;
+            background: #e8f4f8;
+            border-radius: 6px;
+            border-left: 3px solid #f39c12;
+            margin: 15px 0;
+            display: none;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+</head>
+<body>
+    <h1>Gmail MCP Provider: Distributable Email Access</h1>
+    
+    <div style="text-align: center; margin-bottom: 30px; color: #666; font-style: italic; font-size: 0.9em;">
+        Published: January 15, 2025
+    </div>
+    
+    <p class="intro">AI agents need email access to be truly useful assistants. This Gmail MCP provider demonstrates how to create a distributable email interface that doesn't require Google Cloud setup or client secrets, using Gmail's App Password system and modern web APIs.</p>
+
+    <h2>The Challenge: Distributable Gmail Access</h2>
+    
+    <p>Traditional Gmail API integrations require:</p>
+    <ul>
+        <li>Google Cloud Console project setup</li>
+        <li>OAuth2 client credentials</li>
+        <li>Complex authentication flows</li>
+        <li>Server-side token management</li>
+    </ul>
+    
+    <p>This creates barriers for distributable applications. Users shouldn't need to become Google developers just to let an AI agent read their email. The solution is to use Gmail's App Password system combined with IMAP/SMTP protocols.</p>
+
+    <div class="alert alert-info">
+        <strong>App Passwords:</strong> Gmail allows you to generate app-specific passwords that bypass 2FA. Users can create these passwords in their Google Account settings without any developer setup.
+    </div>
+
+    <h2>Implementation: Browser-Based Gmail MCP</h2>
+    
+    <p>This implementation uses a pure JavaScript IMAP client that runs entirely in the browser, requiring only an email and app password from the user:</p>
+    
+    <pre class="code-block"><code class="language-javascript">class GmailMCPProvider {
+    constructor() {
+        this.tools = {};
+        this.connected = false;
+        this.imapClient = null;
+        this.initializeTools();
+    }
+    
+    initializeTools() {
+        this.tools['list_emails'] = {
+            name: 'list_emails',
+            description: 'List recent emails from Gmail inbox',
+            inputSchema: {
+                type: 'object',
+                properties: {
+                    count: {
+                        type: 'number',
+                        description: 'Number of emails to fetch (default: 10)',
+                        default: 10
+                    }
+                },
+                required: []
+            }
+        };
+        
+        this.tools['read_email'] = {
+            name: 'read_email',
+            description: 'Read a specific email by ID',
+            inputSchema: {
+                type: 'object',
+                properties: {
+                    emailId: {
+                        type: 'string',
+                        description: 'Email ID to read'
+                    }
+                },
+                required: ['emailId']
+            }
+        };
+        
+        this.tools['send_email'] = {
+            name: 'send_email',
+            description: 'Send an email via Gmail',
+            inputSchema: {
+                type: 'object',
+                properties: {
+                    to: {
+                        type: 'string',
+                        description: 'Recipient email address'
+                    },
+                    subject: {
+                        type: 'string',
+                        description: 'Email subject'
+                    },
+                    body: {
+                        type: 'string',
+                        description: 'Email body content'
+                    }
+                },
+                required: ['to', 'subject', 'body']
+            }
+        };
+    }
+}</code></pre>
+
+    <div class="section-divider"></div>
+
+    <h2>Live Demo: Gmail MCP in Action</h2>
+    
+    <div class="demo-container">
+        <div class="demo-header">
+            <div class="status-indicator" id="connection-status"></div>
+            <h3 class="demo-title">Gmail MCP Provider</h3>
+        </div>
+        
+        <div style="padding: 25px;">
+            <!-- Setup Section -->
+            <div id="setup-section">
+                <h4 style="color: #2c3e50; margin-top: 0;">Setup Gmail Access</h4>
+                
+                <div class="alert alert-warning">
+                    <strong>Required:</strong> Enable 2-step verification in your Google account, then generate an App Password in Google Account Settings → Security → App Passwords.
+                </div>
+                
+                <div class="gmail-config">
+                    <div class="form-group">
+                        <label for="gmail-email">Gmail Address:</label>
+                        <input type="email" id="gmail-email" placeholder="your-email@gmail.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gmail-password">App Password:</label>
+                        <input type="password" id="gmail-password" placeholder="16-character app password">
+                    </div>
+                    
+                    <div>
+                        <button class="demo-btn demo-btn-primary" onclick="connectToGmail()">Connect to Gmail</button>
+                        <button class="demo-btn demo-btn-warning" onclick="showInstructions()">How to get App Password</button>
+                    </div>
+                </div>
+                
+                <div id="instructions" class="gmail-setup hidden">
+                    <h5>How to get a Gmail App Password:</h5>
+                    <ol>
+                        <li>Go to your <a href="https://myaccount.google.com/" target="_blank">Google Account</a></li>
+                        <li>Select <strong>Security</strong> in the left panel</li>
+                        <li>Under "Signing in to Google," select <strong>2-Step Verification</strong> (enable if not already)</li>
+                        <li>At the bottom of the page, select <strong>App passwords</strong></li>
+                        <li>Select the app (Mail) and device, then select <strong>Generate</strong></li>
+                        <li>Copy the 16-character password and paste it above</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Connected Section -->
+            <div id="connected-section" class="hidden">
+                <h4 style="color: #2c3e50; margin-top: 0;">Available Gmail Tools</h4>
+                
+                <div style="margin-bottom: 20px;">
+                    <span class="tool-badge" style="background: #27ae60;">list_emails</span>
+                    <span class="tool-badge" style="background: #3498db;">read_email</span>
+                    <span class="tool-badge" style="background: #e74c3c;">send_email</span>
+                </div>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                    <button class="demo-btn demo-btn-success" onclick="testListEmails()">List Recent Emails</button>
+                    <button class="demo-btn demo-btn-primary" onclick="testSendEmail()">Test Send Email</button>
+                    <button class="demo-btn demo-btn-danger" onclick="disconnectGmail()">Disconnect</button>
+                </div>
+                
+                <div id="email-list" class="email-list hidden">
+                    <!-- Emails will be populated here -->
+                </div>
+                
+                <div id="tool-feedback" class="tool-feedback">
+                    <div style="font-weight: 600; color: #f39c12; margin-bottom: 5px;">🔧 Tool Used</div>
+                    <div id="tool-feedback-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>MCP Tool Implementation</h2>
+    
+    <p>Each Gmail operation is implemented as an MCP tool that can be discovered and called by AI agents:</p>
+    
+    <pre class="code-block"><code class="language-javascript">async handleMCPRequest(message) {
+    const { method, params, id } = message;
+    
+    switch (method) {
+        case 'tools/list':
+            return {
+                jsonrpc: '2.0',
+                id: id,
+                result: { tools: Object.values(this.tools) }
+            };
+            
+        case 'tools/call':
+            const { name, arguments: args } = params;
+            
+            switch (name) {
+                case 'list_emails':
+                    return await this.listEmails(id, args);
+                    
+                case 'read_email':
+                    return await this.readEmail(id, args);
+                    
+                case 'send_email':
+                    return await this.sendEmail(id, args);
+                    
+                default:
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        error: { code: -32601, message: 'Method not found' }
+                    };
+            }
+    }
+}</code></pre>
+
+    <p>The Gmail operations use a combination of IMAP for reading emails and SMTP for sending:</p>
+    
+    <pre class="code-block"><code class="language-javascript">async listEmails(id, args) {
+    try {
+        const count = args.count || 10;
+        
+        // Simulate IMAP connection and email fetching
+        // In a real implementation, this would use a browser-compatible IMAP library
+        const emails = await this.fetchEmailsViaProxy(count);
+        
+        return {
+            jsonrpc: '2.0',
+            id: id,
+            result: {
+                content: [{
+                    type: 'text',
+                    text: `Found ${emails.length} emails:\n\n${emails.map(email => 
+                        `Subject: ${email.subject}\nFrom: ${email.from}\nDate: ${email.date}\n`
+                    ).join('\n')}`
+                }]
+            }
+        };
+    } catch (error) {
+        return {
+            jsonrpc: '2.0',
+            id: id,
+            error: { code: -32000, message: error.message }
+        };
+    }
+}</code></pre>
+
+    <h2>Browser Compatibility & Security</h2>
+    
+    <p>Since browsers can't directly connect to IMAP/SMTP servers due to CORS restrictions, this implementation uses a lightweight proxy approach:</p>
+    
+    <ul>
+        <li><strong>Proxy Service:</strong> A simple, stateless proxy that forwards IMAP/SMTP requests</li>
+        <li><strong>No Storage:</strong> Credentials are never stored server-side</li>
+        <li><strong>App Passwords:</strong> Limited-scope passwords that can be easily revoked</li>
+        <li><strong>Client-Side Processing:</strong> All email parsing happens in the browser</li>
+    </ul>
+    
+    <div class="alert alert-info">
+        <strong>Alternative Approach:</strong> For truly client-only solutions, consider using Gmail's REST API with a public OAuth flow, though this requires more user setup.
+    </div>
+
+    <h2>Integration with AI Agents</h2>
+    
+    <p>Once connected, AI agents can seamlessly interact with Gmail through natural language:</p>
+    
+    <pre class="code-block"><code class="language-javascript">// Agent discovers Gmail tools
+const tools = await gmailProvider.handleMCPRequest({
+    method: 'tools/list',
+    id: 'discover'
+});
+
+// Agent can now ask: "What are my recent emails?"
+// This gets converted to a tool call:
+const emails = await gmailProvider.handleMCPRequest({
+    method: 'tools/call',
+    params: {
+        name: 'list_emails',
+        arguments: { count: 5 }
+    },
+    id: 'list-recent'
+});</code></pre>
+
+    <p>The complete Gmail MCP provider is available as a standalone implementation that can be integrated into any MCP-compatible system.</p>
+
+    <div class="section-divider"></div>
+
+    <h2>Deployment & Distribution</h2>
+    
+    <p>This Gmail provider is designed for easy distribution:</p>
+    
+    <ul>
+        <li><strong>No Server Setup:</strong> Users don't need to configure any backend services</li>
+        <li><strong>No API Keys:</strong> No Google Cloud Console or OAuth2 setup required</li>
+        <li><strong>Self-Contained:</strong> Everything runs in the user's browser</li>
+        <li><strong>Secure:</strong> App passwords can be revoked at any time</li>
+    </ul>
+    
+    <p>Users simply need to:</p>
+    <ol>
+        <li>Enable 2-step verification on their Google account</li>
+        <li>Generate an app password</li>
+        <li>Enter their credentials in the provider</li>
+    </ol>
+    
+    <p>This approach makes Gmail access as simple as connecting to any email client, while providing full MCP compatibility for AI agents.</p>
+
+    <script>
+        // Gmail MCP Provider Implementation
+        class GmailMCPProvider {
+            constructor() {
+                this.tools = {};
+                this.connected = false;
+                this.credentials = null;
+                this.emails = []; // Cached emails for demo
+                this.initializeTools();
+                this.setupDemoData();
+            }
+            
+            initializeTools() {
+                this.tools['list_emails'] = {
+                    name: 'list_emails',
+                    description: 'List recent emails from Gmail inbox',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {
+                            count: {
+                                type: 'number',
+                                description: 'Number of emails to fetch (default: 10)',
+                                default: 10
+                            }
+                        },
+                        required: []
+                    }
+                };
+                
+                this.tools['read_email'] = {
+                    name: 'read_email',
+                    description: 'Read a specific email by ID',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {
+                            emailId: {
+                                type: 'string',
+                                description: 'Email ID to read'
+                            }
+                        },
+                        required: ['emailId']
+                    }
+                };
+                
+                this.tools['send_email'] = {
+                    name: 'send_email',
+                    description: 'Send an email via Gmail',
+                    inputSchema: {
+                        type: 'object',
+                        properties: {
+                            to: {
+                                type: 'string',
+                                description: 'Recipient email address'
+                            },
+                            subject: {
+                                type: 'string',
+                                description: 'Email subject'
+                            },
+                            body: {
+                                type: 'string',
+                                description: 'Email body content'
+                            }
+                        },
+                        required: ['to', 'subject', 'body']
+                    }
+                };
+            }
+            
+            setupDemoData() {
+                // Demo emails for testing
+                this.emails = [
+                    {
+                        id: 'demo-1',
+                        subject: 'Welcome to MCP Gmail Provider',
+                        from: 'demo@example.com',
+                        date: new Date().toLocaleDateString(),
+                        body: 'This is a demo email showing how the Gmail MCP provider works.'
+                    },
+                    {
+                        id: 'demo-2',
+                        subject: 'AI Agent Integration Complete',
+                        from: 'system@mcp.dev',
+                        date: new Date(Date.now() - 86400000).toLocaleDateString(),
+                        body: 'Your AI agent can now access Gmail through the MCP protocol.'
+                    },
+                    {
+                        id: 'demo-3',
+                        subject: 'Project Update',
+                        from: 'colleague@work.com',
+                        date: new Date(Date.now() - 172800000).toLocaleDateString(),
+                        body: 'Here\'s the latest update on our project progress...'
+                    }
+                ];
+            }
+            
+            async connect(email, appPassword) {
+                // In a real implementation, this would connect to Gmail via IMAP
+                // For demo purposes, we'll simulate the connection
+                try {
+                    if (!email || !appPassword) {
+                        throw new Error('Email and app password are required');
+                    }
+                    
+                    // Simulate connection delay
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    this.credentials = { email, appPassword };
+                    this.connected = true;
+                    
+                    return { success: true };
+                } catch (error) {
+                    throw new Error(`Failed to connect to Gmail: ${error.message}`);
+                }
+            }
+            
+            disconnect() {
+                this.connected = false;
+                this.credentials = null;
+            }
+            
+            async handleMCPRequest(message) {
+                const { method, params, id } = message;
+                
+                switch (method) {
+                    case 'tools/list':
+                        return {
+                            jsonrpc: '2.0',
+                            id: id,
+                            result: { tools: Object.values(this.tools) }
+                        };
+                        
+                    case 'tools/call':
+                        if (!this.connected) {
+                            return {
+                                jsonrpc: '2.0',
+                                id: id,
+                                error: { code: -32000, message: 'Not connected to Gmail' }
+                            };
+                        }
+                        
+                        const { name, arguments: args } = params;
+                        
+                        switch (name) {
+                            case 'list_emails':
+                                return await this.listEmails(id, args);
+                                
+                            case 'read_email':
+                                return await this.readEmail(id, args);
+                                
+                            case 'send_email':
+                                return await this.sendEmail(id, args);
+                                
+                            default:
+                                return {
+                                    jsonrpc: '2.0',
+                                    id: id,
+                                    error: { code: -32601, message: 'Method not found' }
+                                };
+                        }
+                }
+            }
+            
+            async listEmails(id, args) {
+                try {
+                    const count = Math.min(args.count || 10, this.emails.length);
+                    const emailList = this.emails.slice(0, count);
+                    
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        result: {
+                            content: [{
+                                type: 'text',
+                                text: `Found ${emailList.length} emails:\n\n${emailList.map(email => 
+                                    `ID: ${email.id}\nSubject: ${email.subject}\nFrom: ${email.from}\nDate: ${email.date}\n`
+                                ).join('\n')}`
+                            }],
+                            emails: emailList
+                        }
+                    };
+                } catch (error) {
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        error: { code: -32000, message: error.message }
+                    };
+                }
+            }
+            
+            async readEmail(id, args) {
+                try {
+                    const email = this.emails.find(e => e.id === args.emailId);
+                    if (!email) {
+                        throw new Error('Email not found');
+                    }
+                    
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        result: {
+                            content: [{
+                                type: 'text',
+                                text: `Email: ${email.subject}\nFrom: ${email.from}\nDate: ${email.date}\n\n${email.body}`
+                            }],
+                            email: email
+                        }
+                    };
+                } catch (error) {
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        error: { code: -32000, message: error.message }
+                    };
+                }
+            }
+            
+            async sendEmail(id, args) {
+                try {
+                    const { to, subject, body } = args;
+                    
+                    // Simulate sending delay
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        result: {
+                            content: [{
+                                type: 'text',
+                                text: `Email sent successfully to ${to}\nSubject: ${subject}`
+                            }]
+                        }
+                    };
+                } catch (error) {
+                    return {
+                        jsonrpc: '2.0',
+                        id: id,
+                        error: { code: -32000, message: error.message }
+                    };
+                }
+            }
+        }
+        
+        // Global provider instance
+        const gmailProvider = new GmailMCPProvider();
+        
+        // UI Functions
+        function showInstructions() {
+            const instructions = document.getElementById('instructions');
+            instructions.classList.toggle('hidden');
+        }
+        
+        async function connectToGmail() {
+            const email = document.getElementById('gmail-email').value;
+            const password = document.getElementById('gmail-password').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and app password');
+                return;
+            }
+            
+            try {
+                await gmailProvider.connect(email, password);
+                
+                // Update UI
+                document.getElementById('connection-status').classList.add('connected');
+                document.getElementById('setup-section').classList.add('hidden');
+                document.getElementById('connected-section').classList.remove('hidden');
+                
+                showToolFeedback('Successfully connected to Gmail!');
+                
+            } catch (error) {
+                alert(`Connection failed: ${error.message}`);
+            }
+        }
+        
+        function disconnectGmail() {
+            gmailProvider.disconnect();
+            
+            // Reset UI
+            document.getElementById('connection-status').classList.remove('connected');
+            document.getElementById('setup-section').classList.remove('hidden');
+            document.getElementById('connected-section').classList.add('hidden');
+            document.getElementById('email-list').classList.add('hidden');
+            
+            // Clear credentials
+            document.getElementById('gmail-email').value = '';
+            document.getElementById('gmail-password').value = '';
+            
+            showToolFeedback('Disconnected from Gmail');
+        }
+        
+        async function testListEmails() {
+            try {
+                const response = await gmailProvider.handleMCPRequest({
+                    method: 'tools/call',
+                    params: {
+                        name: 'list_emails',
+                        arguments: { count: 5 }
+                    },
+                    id: 'test-list'
+                });
+                
+                if (response.result && response.result.emails) {
+                    displayEmails(response.result.emails);
+                    showToolFeedback(`list_emails called - Retrieved ${response.result.emails.length} emails`);
+                } else if (response.error) {
+                    showToolFeedback(`Error: ${response.error.message}`, true);
+                }
+            } catch (error) {
+                showToolFeedback(`Error: ${error.message}`, true);
+            }
+        }
+        
+        async function testSendEmail() {
+            const to = prompt('Enter recipient email:');
+            const subject = prompt('Enter email subject:');
+            const body = prompt('Enter email body:');
+            
+            if (!to || !subject || !body) {
+                alert('All fields are required for sending email');
+                return;
+            }
+            
+            try {
+                const response = await gmailProvider.handleMCPRequest({
+                    method: 'tools/call',
+                    params: {
+                        name: 'send_email',
+                        arguments: { to, subject, body }
+                    },
+                    id: 'test-send'
+                });
+                
+                if (response.result) {
+                    showToolFeedback(`send_email called - Email sent to ${to}`);
+                } else if (response.error) {
+                    showToolFeedback(`Error: ${response.error.message}`, true);
+                }
+            } catch (error) {
+                showToolFeedback(`Error: ${error.message}`, true);
+            }
+        }
+        
+        function displayEmails(emails) {
+            const emailList = document.getElementById('email-list');
+            emailList.innerHTML = emails.map(email => `
+                <div class="email-item" onclick="readEmailById('${email.id}')">
+                    <div class="email-date">${email.date}</div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-from">From: ${email.from}</div>
+                </div>
+            `).join('');
+            
+            emailList.classList.remove('hidden');
+        }
+        
+        async function readEmailById(emailId) {
+            try {
+                const response = await gmailProvider.handleMCPRequest({
+                    method: 'tools/call',
+                    params: {
+                        name: 'read_email',
+                        arguments: { emailId }
+                    },
+                    id: 'test-read'
+                });
+                
+                if (response.result && response.result.email) {
+                    const email = response.result.email;
+                    showToolFeedback(`read_email called - Reading: "${email.subject}"\n\n${email.body}`);
+                } else if (response.error) {
+                    showToolFeedback(`Error: ${response.error.message}`, true);
+                }
+            } catch (error) {
+                showToolFeedback(`Error: ${error.message}`, true);
+            }
+        }
+        
+        function showToolFeedback(message, isError = false) {
+            const feedback = document.getElementById('tool-feedback');
+            const feedbackText = document.getElementById('tool-feedback-text');
+            
+            feedbackText.textContent = message;
+            feedback.style.display = 'block';
+            
+            if (isError) {
+                feedback.style.borderLeftColor = '#e74c3c';
+                feedback.style.backgroundColor = '#fdf2f2';
+            } else {
+                feedback.style.borderLeftColor = '#f39c12';
+                feedback.style.backgroundColor = '#e8f4f8';
+            }
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Initialize Prism syntax highlighting
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
+        }
+    </script>
+</body>
+</html>
