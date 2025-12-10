@@ -1,0 +1,396 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=nv-pub-date content="2025-09-25T16:25:07.000Z"><meta name=products content="NVIDIA Air"><title>Custom Topology | NVIDIA Air</title><link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel=stylesheet><link rel=stylesheet href=/book.min.3b3972df3003558c884fe051dd3b739d04d452831a8cd2a4e9728cd51439db61.css><link rel=icon href=/icons/favicon.png type=image/x-icon><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"><script src=/js/codecopy.js></script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js></script><script type=application/javascript src=/js/air.js></script><script src=/js/netguru.js id=chainlit-script></script><script>window.mountChainlitWidget({chainlitServer:"https://copilot-netguru.nvidia.com/chainlit",button:{position:{bottom:1,right:1,size:3},popup:{normalWidth:300,expandedWidth:800,height:800}}})</script><link rel=canonical href=https://docs.nvidia.com//nvidia-air/Custom-Topology/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tablesaw/3.1.2/tablesaw.min.css integrity="sha512-FW7xwIsGt3iCswNR3o4kcXqkKDvN8Q7obwdxFODRT+L6XkRtScLElfvobA7bjiC2iTgG/sRaBUqdrhqx0RTauw==" crossorigin=anonymous><script async src="https://www.googletagmanager.com/gtag/js?id=G-HTM5Y02305"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-HTM5Y02305')</script></head><body class=docs><div id=site-nav class=globalNav><div class=container-lg><nav class=navTopWrapper><ul class=navTop><li><a href=https://docs.nvidia.com/ target=_blank><img width=228 height=26 src=/images/nvidia-docshub-logo-2.svg></a></li><div id=product-nav-black class=flex><div class=search-container><script async src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script><li><div dir=ltr><form action=/search/ accept-charset=utf-8><div id=doc-search-box-black><input type=text name=q class=doc-search-input-black placeholder=Search>
+<span><button type=submit>
+<img height=20 width=20 src=/icons/search_20x20.svg alt></button></span></div></form></div></div></li></ul></nav><nav><ul class=navRoot><li class="navSection logo"><div class=rootLink><a href=/><span>Networking Docs</span></a></div></li><li class="navSection primary"><a class=rootLink href=/cumulus-linux-514>NVIDIA Cumulus Linux</a>
+<a class=rootLink href=/cumulus-netq-415>NVIDIA NetQ</a>
+<a class=rootLink href=/nvidia-air>NVIDIA Air</a>
+<a class=rootLink href=/cumulus-vx>NVIDIA Cumulus VX</a>
+<a class=rootLink href=/knowledge-base>Knowledge Base</a>
+<a class=rootLink href=/guides>Technical Guides</a></li><li class="navSection mobile"><div class=burger-menu><span></span><span></span><span></span></div></li></ul></nav></div><div class=mobileMenu><ul><li><a href=/cumulus-linux-514>NVIDIA Cumulus Linux</a></li><li><a href=/cumulus-netq-415>NVIDIA NetQ</a></li><li><a href=/nvidia-air>NVIDIA Air</a></li><li><a href=/cumulus-vx>NVIDIA Cumulus VX</a></li><li><a href=/knowledge-base>Knowledge Base</a></li><li><a href=/guides>Technical Guides</a></li></div></div><div class=docs-wrapper><div id=product-nav class=flex><div class=search-container><div class=screen-layout><a class=default href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-3</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="7.5" y1="6.497" x2="7.5" y2="22.497"/><line class="a" x1="15.5" y1="6.513" x2="15.5" y2="22.497"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/></svg></a><a class=sb-right href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-6</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a><a class=sb-left href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-1</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a><a class=no-sb href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-top</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/></svg></a></div><div class=Page-breadcrumbs></div><a href=https://docs.nvidia.com/>NVIDIA Docs Hub</a><span class=material-symbols-outlined>chevron_right</span><p>NVIDIA Air</p></div></div></div><div id=mobile-product-nav><div class=m-top-nav><div class="flex justify-between align-center"><div class=product-dropdown></div></div></div><div class="m-bottom-nav flex justify-between search-container"><div class=screen-layout><a class=no-sb href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-top</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/></svg></a><a class=sb-right href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-6</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="15.5" y1="6.497" x2="15.5" y2="22.497"/></svg></a><a class=sb-left href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>layout-1</title><rect class="a" x=".5" y=".497" width="22" height="22" rx="1" ry="1"/><line class="a" x1=".5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a></div><div id=m-doc-search-box><input type=search name=search class=m-doc-search-input placeholder=Search>
+<a href=#><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}</style></defs><title>search-1</title><circle class="a" cx="10.5" cy="10.5" r="10"/><line class="a" x1="23.5" y1="23.5" x2="17.571" y2="17.571"/></svg></a></div></div></div><main class="container flex"><aside class=book-menu><nav role=navigation><h2 class=book-brand><a href=/>NVIDIA Networking Documentation</a></h2><ul id=top class=cn-book-section-container><li class=cn-book-section><a href=/nvidia-air/>NVIDIA Air User Guide</a><ul class=cn-book-section-container id=subsection><li><a href=/nvidia-air/Authentication/>Access and Account Setup</a></li><li><a href=/nvidia-air/Quick-Start/>Quick Start</a></li><li><a href=/nvidia-air/Whats-New/>What's New</a></li><li><a href=/nvidia-air/Pre-Built-Demos/>Pre-built Demos</a></li><li><a href=/nvidia-air/Custom-Topology/ class=active>Custom Topology</a></li><li><a href=/nvidia-air/Organizations/>Organizations</a></li><li><a href=/nvidia-air/Air-Python-SDK/>Air API & Python SDK</a></li><li><a href=/nvidia-air/Air-SDK-V2/>Air SDK V2</a></li></ul></li></ul></nav><script src=/js/menuBundle.js></script></aside><div class=book-page><article class=markdown><h1>Custom Topology</h1><div class="notices note"><p><p>The information on this page reflects the workflows for the new Air UI. The legacy UI is being deprecated. <a href=/nvidia-air/Custom-Topology-Legacy/#>View documentation for the legacy UI</a></p></p></div><h2 id=the-drag-and-drop-topology-builder>The Drag-and-Drop Topology Builder</h2><p>One way to create custom simulations is with the built-in topology builder, which provides a drag-and-drop editor to design any custom network. To get started, navigate to <a href=https://air.nvidia.com/simulations>https://air.nvidia.com/simulations</a>.</p><ol><li>Select <strong>Create Simulation</strong>.</li><li>Provide a name for your simulation.</li><li>Select <strong>Blank Canvas</strong> as the type.</li><li>(Optional) Assign the simulation to an <a href=https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/>Organization</a>.</li><li>(Optional) Add a <a href=#ztp-scripts>ZTP script</a> to the simulation:<ol><li>Select <strong>Apply ZTP Template</strong>.</li><li>Enter your ZTP script. A default script is prefilled to help get you started.</li></ol></li><li>Click <strong>Create</strong>.</li></ol><img src=/images/guides/nvidia-air/CreateSimulation.png alt width=800px height><h3 id=ztp-scripts>ZTP Scripts</h3><p>When you create a new simulation, Air gives you the option to add a zero-touch provisioning (ZTP) script. The ZTP script is copied to the simulation&rsquo;s <code>oob-mgmt-server</code>. Any node making a ZTP request on the out-of-band management network has access to this ZTP script through a DHCP server and web server running on the <code>oob-mgmt-server</code>.</p><div class="notices note"><p><p>You must have the out-of-band-network enabled to use ZTP scripts.</p></p></div><p>A default script is prefilled to help you get started. It implements common ZTP features on Cumulus Linux, such as changing the default password or downloading SSH keys. You can edit the default script directly in the UI.</p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+Default ZTP script</span></div><div class=expand-content style=display:none><pre><code>#!/bin/bash
+# Created by Topology-Converter v4.7.1
+#    Template Revision: v4.7.1
+
+function error() {
+  echo -e &quot;e[0;33mERROR: The Zero Touch Provisioning script failed while running the command $BASH_COMMAND at line $BASH_LINENO.e[0m&quot; &gt;&amp;2
+}
+trap error ERR
+
+SSH_URL=&quot;http://192.168.200.1/authorized_keys&quot;
+# Uncomment to setup SSH key authentication for Ansible
+# mkdir -p /home/cumulus/.ssh
+# wget -q -O /home/cumulus/.ssh/authorized_keys $SSH_URL
+
+# Uncomment to unexpire and change the default cumulus user password
+# passwd -x 99999 cumulus
+# echo 'cumulus:Cumu1usLinux!' | chpasswd
+
+# Uncomment to make user cumulus passwordless sudo
+# echo &quot;cumulus ALL=(ALL) NOPASSWD:ALL&quot; &gt; /etc/sudoers.d/10_cumulus
+
+# Uncomment to enable all debian sources &amp; netq apps3 repo
+# sed -i 's/#deb/deb/g' /etc/apt/sources.list
+# wget -q -O pubkey https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey
+# apt-key add pubkey
+# rm pubkey
+
+# Uncomment to allow NTP to make large steps at service restart
+# echo &quot;tinker panic 0&quot; &gt;&gt; /etc/ntp.conf
+# systemctl enable ntp@mgmt
+
+exit 0
+#CUMULUS-AUTOPROVISIONING
+</code></pre></div></div><h3 id=manage-nodes>Manage Nodes</h3><p>You can drag servers and switches from the <strong>System Palette</strong> to the workspace. Air provides access to hardware models based on available NVIDIA Spectrum switches. The model does not affect the simulation, but allows Air to pre-populate the number of ports based on the switch model. You do not need to use each port.</p><p>Select a node to view or edit its properties.</p><ul><li><strong>Name</strong>: Node hostname.</li><li><strong>Operating System</strong>: Name of the OS installed on the node. The OS is installed automatically.</li><li><strong>CPUs</strong>: Number of CPUs. The default is 1 or 2 GB depending on the Spectrum switch.</li><li><strong>Memory (GB)</strong>: Amount of RAM (default is 2 GB).</li><li><strong>Storage (GB)</strong>: Amount of hard disk space (default is 10 GB).</li><li><strong>Connectors</strong>: Choose an available port to connect directly to any port on another node.</li></ul><p>Make sure to select <strong>Update Node</strong> when you complete the changes. You can delete nodes by selecting <strong>Delete Node</strong>.</p><p>Air also provides advanced options, such as enabling UEFI secure boot.</p><p><img src=/images/guides/nvidia-air/AddNode.png alt width height><br><br>After you create your topology, start the simulation. You cannot add, remove, or edit nodes after the simulation starts for the first time</p><h3 id=oob-management-network>OOB Management Network</h3><p>On the <strong>System Palette</strong>, there is an option to <strong>Enable OOB</strong>. This setting enables the out-of-band management network that connects all nodes to each other. It also adds an <code>oob-mgmt-switch</code> and <code>oob-mgmt-server</code> to your simulation. When you enable SSH, you connect to the <code>oob-mgmt-server</code>, making this node an ideal starting point for configurations. Air handles the configuration automatically for you.</p><p><img src=/images/guides/nvidia-air/EnableOOB.png alt width=300px height><br><br>You can add more <code>oob-mgmt-switches</code> and <code>oob-mgmt-servers</code> to your simulation manually even when <strong>Enable OOB</strong> is set to off. However, you must switch <strong>Enable OOB</strong> on to use the out-of-band network.</p><h2 id=importing-custom-topologies-with-external-files>Importing Custom Topologies with External Files</h2><p>You can create custom topologies in Air by importing either JSON (recommended) or DOT files. These files define a network&rsquo;s nodes, attributes, and connections. You can modify the file with any text editor.</p><p>When you upload external topology files directly to Air, you can:</p><ul><li>Share and create copies of a topology</li><li>Save the topology in a reusable file</li><li>Streamline automation</li><li>Generate very large topologies</li></ul><h3 id=json>JSON</h3><p>The following JSON topology is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.</p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+View Sample JSON Topology</span></div><div class=expand-content style=display:none><pre><code>{
+    &quot;format&quot;: &quot;JSON&quot;,
+    &quot;title&quot;: &quot;Demo&quot;,
+    &quot;ztp&quot;: null,
+    &quot;content&quot;: {
+        &quot;nodes&quot;: {
+            &quot;leaf01&quot;: {
+                &quot;cpu&quot;: 2,
+                &quot;memory&quot;: 4096,
+                &quot;storage&quot;: 10,
+                &quot;os&quot;: &quot;sonic-vs-202305&quot;,
+                &quot;features&quot;: {
+                    &quot;uefi&quot;: false,
+                    &quot;tpm&quot;: false
+                },
+                &quot;pxehost&quot;: false,
+                &quot;secureboot&quot;: false,
+                &quot;oob&quot;: false,
+                &quot;emulation_type&quot;: null,
+                &quot;network_pci&quot;: {},
+                &quot;management_mac&quot;: &quot;00:00:00:00:00:00&quot;
+            },
+            &quot;leaf02&quot;: {
+                &quot;cpu&quot;: 2,
+                &quot;memory&quot;: 4096,
+                &quot;storage&quot;: 10,
+                &quot;os&quot;: &quot;sonic-vs-202305&quot;,
+                &quot;features&quot;: {
+                    &quot;uefi&quot;: false,
+                    &quot;tpm&quot;: false
+                },
+                &quot;pxehost&quot;: false,
+                &quot;secureboot&quot;: false,
+                &quot;oob&quot;: false,
+                &quot;emulation_type&quot;: null,
+                &quot;network_pci&quot;: {},
+                &quot;management_mac&quot;: &quot;00:00:00:00:00:00&quot;
+            },
+            &quot;server01&quot;: {
+                &quot;cpu&quot;: 2,
+                &quot;memory&quot;: 2048,
+                &quot;storage&quot;: 10,
+                &quot;os&quot;: &quot;generic/ubuntu2404&quot;,
+                &quot;features&quot;: {
+                    &quot;uefi&quot;: false,
+                    &quot;tpm&quot;: false
+                },
+                &quot;pxehost&quot;: false,
+                &quot;secureboot&quot;: false,
+                &quot;oob&quot;: false,
+                &quot;emulation_type&quot;: null,
+                &quot;network_pci&quot;: {},
+                &quot;management_mac&quot;: &quot;00:00:00:00:00:00&quot;
+            },
+            &quot;server02&quot;: {
+                &quot;cpu&quot;: 2,
+                &quot;memory&quot;: 2048,
+                &quot;storage&quot;: 10,
+                &quot;os&quot;: &quot;generic/ubuntu2404&quot;,
+                &quot;features&quot;: {
+                    &quot;uefi&quot;: false,
+                    &quot;tpm&quot;: false
+                },
+                &quot;pxehost&quot;: false,
+                &quot;secureboot&quot;: false,
+                &quot;oob&quot;: false,
+                &quot;emulation_type&quot;: null,
+                &quot;network_pci&quot;: {},
+                &quot;management_mac&quot;: &quot;00:00:00:00:00:00&quot;
+            },
+            &quot;spine01&quot;: {
+                &quot;cpu&quot;: 2,
+                &quot;memory&quot;: 4096,
+                &quot;storage&quot;: 10,
+                &quot;os&quot;: &quot;sonic-vs-202305&quot;,
+                &quot;features&quot;: {
+                    &quot;uefi&quot;: false,
+                    &quot;tpm&quot;: false
+                },
+                &quot;pxehost&quot;: false,
+                &quot;secureboot&quot;: false,
+                &quot;oob&quot;: false,
+                &quot;emulation_type&quot;: null,
+                &quot;network_pci&quot;: {},
+                &quot;management_mac&quot;: &quot;00:00:00:00:00:00&quot;
+            }
+        },
+        &quot;links&quot;: [
+            [
+                {
+                    &quot;interface&quot;: &quot;eth1&quot;,
+                    &quot;node&quot;: &quot;leaf01&quot;
+                },
+                {
+                    &quot;interface&quot;: &quot;eth1&quot;,
+                    &quot;node&quot;: &quot;server01&quot;
+                }
+            ],
+            [
+                {
+                    &quot;interface&quot;: &quot;eth2&quot;,
+                    &quot;node&quot;: &quot;leaf01&quot;
+                },
+                {
+                    &quot;interface&quot;: &quot;eth1&quot;,
+                    &quot;node&quot;: &quot;spine01&quot;
+                }
+            ],
+            [
+                {
+                    &quot;interface&quot;: &quot;eth1&quot;,
+                    &quot;node&quot;: &quot;leaf02&quot;
+                },
+                {
+                    &quot;interface&quot;: &quot;eth1&quot;,
+                    &quot;node&quot;: &quot;server02&quot;
+                }
+            ],
+            [
+                {
+                    &quot;interface&quot;: &quot;eth2&quot;,
+                    &quot;node&quot;: &quot;leaf02&quot;
+                },
+                {
+                    &quot;interface&quot;: &quot;eth2&quot;,
+                    &quot;node&quot;: &quot;spine01&quot;
+                }
+            ]
+        ]
+    }
+}
+</code></pre></div></div><br><p>When you view the nodes within Air after starting the simulation, notice that the resources are allocated according to the file:</p><p><img src=/images/guides/nvidia-air/JSONNodesExample.png alt width height><br><br>When you view the links within Air after starting the simulation, notice that the nodes are connected based on the file, and also connected to the out-of-band management network:</p><img src=/images/guides/nvidia-air/JSONLinksExample.png alt width height><div class="notices note"><p><p>If you omit the <code>oob</code> key in your JSON file, the <strong>Enable OOB</strong> will still be set to <strong>on</strong> after you&rsquo;ve uploaded your file with default resources and will be automatically connected to each node.</p></p></div><h4 id=custom-oob-management-network-resources>Custom OOB Management Network Resources</h4><p>You can specify an <code>oob-mgmt-switch</code> and <code>oob-mgmt-server</code> to customize allocated resources.</p><p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+View Custom OOB Network Example</span></div><div class=expand-content style=display:none><pre><code>{
+    &quot;format&quot;: &quot;JSON&quot;,
+    &quot;title&quot;: &quot;Demo&quot;,
+    &quot;ztp&quot;: null,
+    &quot;content&quot;: {
+        &quot;nodes&quot;: {
+           ...
+        },
+        &quot;links&quot;: [
+            ...
+        ],
+        &quot;oob&quot;: {
+            &quot;nodes&quot;: {
+                &quot;oob-mgmt-server&quot;: {
+                    &quot;cpu&quot;: 3,
+                    &quot;memory&quot;: 3072,
+                    &quot;storage&quot;: 21
+                    
+                },
+                &quot;oob-mgmt-switch&quot;: {
+                    &quot;cpu&quot;: 2,
+                    &quot;memory&quot;: 4096,
+                    &quot;storage&quot;: 20
+                }
+            }
+        }
+    }
+}
+</code></pre></div></div><br>When viewing the nodes within Air after starting the simulation, notice that the resources are allocated based on the file:</p><img src=/images/guides/nvidia-air/JSONOOBExample.png alt width height><h4 id=custom-netq-node>Custom NetQ Node</h4><p>You can create and customize a NetQ instance for your simulation.</p><p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+View Custom NetQ Node Example</span></div><div class=expand-content style=display:none><pre><code>{
+    &quot;format&quot;: &quot;JSON&quot;,
+    &quot;title&quot;: &quot;Demo&quot;,
+    &quot;ztp&quot;: null,
+    &quot;content&quot;: {
+        &quot;nodes&quot;: {
+           ...
+        },
+        &quot;links&quot;: [
+            ...
+        ],
+        &quot;oob&quot;: {
+            ...
+        },
+         &quot;netq&quot;: {
+            &quot;nodes&quot;: {
+                &quot;netq-ts&quot;: {
+                    &quot;cpu&quot;: 4,
+                    &quot;memory&quot;: 6144,
+                    &quot;storage&quot;: 64,
+                    &quot;os&quot;: &quot;netq-ts-cloud-4.12.0&quot;
+                }
+            }
+        }
+    }
+}
+</code></pre></div></div><br>When viewing the nodes within Air, notice that the resources are allocated based on the file.</p><img src=/images/guides/nvidia-air/JSONNetQExample.png alt width height><h3 id=dot>DOT</h3><p>You can also create custom topologies in Air using a DOT file, which is the file type used with the open-source graph visualization software, Graphviz. DOT files are simple, customizable, text-based files. DOT files use the <code>.dot</code> file extension.</p><div class="notices info"><p><p>NVIDIA strongly recommends using JSON over DOT files due to improved validation, scalability, and broader adoption levels.</p></p></div><p>The following is an example of a simple topology with 1 spine, 2 leaf nodes, and 2 servers connected to each leaf.</p><pre><code>graph &quot;Demo&quot; {
+  &quot;spine01&quot; [ function=&quot;spine&quot; memory=&quot;4096&quot; os=&quot;sonic-vs-202305&quot; cpu=&quot;2&quot; ]
+  &quot;leaf01&quot; [ function=&quot;leaf&quot; memory=&quot;4096&quot; os=&quot;sonic-vs-202305&quot; cpu=&quot;2&quot; nic_model=&quot;e1000&quot;]
+  &quot;leaf02&quot; [ function=&quot;leaf&quot; memory=&quot;4096&quot; os=&quot;sonic-vs-202305&quot; cpu=&quot;2&quot; secureboot=&quot;true&quot;]
+  &quot;server01&quot; [ function=&quot;server&quot; memory=&quot;2048&quot; os=&quot;generic/ubuntu2404&quot; cpu=&quot;2&quot;]
+  &quot;server02&quot; [ function=&quot;server&quot; memory=&quot;2048&quot; os=&quot;generic/ubuntu2204&quot; cpu=&quot;3&quot; storage=&quot;20&quot;]
+    &quot;leaf01&quot;:&quot;eth1&quot; -- &quot;server01&quot;:&quot;eth1&quot;
+    &quot;leaf02&quot;:&quot;eth1&quot; -- &quot;server02&quot;:&quot;eth1&quot;
+    &quot;leaf01&quot;:&quot;eth2&quot; -- &quot;spine01&quot;:&quot;eth1&quot;
+    &quot;spine01&quot;:&quot;eth2&quot; -- &quot;leaf02&quot;:&quot;eth2&quot;
+}
+</code></pre><p>The following sections provide examples for common DOT file customizations.</p><h4 id=operating-system>Operating System</h4><p>You can set the operating system of the node with the <code>os</code> option:</p><pre><code>&quot;server&quot; [os=&quot;cumulus-vx-5.10.1&quot;]
+</code></pre><h4 id=disk-space>Disk Space</h4><p>By default, nodes in Air have 10 GB of hard disk space. You can increase the space (in GB) by using the <code>storage</code> option:</p><pre><code>&quot;server&quot; [os=&quot;generic/ubuntu2404&quot; storage=&quot;20&quot;]
+</code></pre><h4 id=cpu>CPU</h4><p>You can customize the number of allocated CPUs with the <code>cpu</code> option:</p><pre><code>&quot;server&quot; [os=&quot;generic/ubuntu2404&quot; cpu=&quot;4&quot;]
+</code></pre><h4 id=create-connections>Create Connections</h4><p>You can create port connections by defining the node and its port with another node and port.</p><pre><code>&quot;leaf01&quot;:&quot;swp49&quot; -- &quot;leaf02&quot;:&quot;swp49&quot;
+&quot;leaf01&quot;:&quot;swp50&quot; -- &quot;leaf02&quot;:&quot;swp50&quot;
+</code></pre><h4 id=memory>Memory</h4><p>You can customize RAM (in MB) with the <code>memory</code> option:</p><pre><code>&quot;server&quot; [os=&quot;generic/ubuntu2404&quot;  memory=&quot;2048&quot;]
+</code></pre><h3 id=examples>Examples</h3><p>Labs in the <a href=https://air.nvidia.com/demos>Demo Marketplace</a> are maintained with external GitLab repositories. Here you can find the <code>topology.dot</code> or <code>topology.json</code> file used to build the lab and use it as a reference. To access the files, select <strong>Documentation</strong> on any lab in the Demo Marketplace. It will direct you to the demo&rsquo;s GitLab repository, where you can download the file used for the demo topology.</p><p>You can also launch a copy of a lab in the Demo Marketplace and then export the JSON file.</p><h3 id=import-a-topology>Import a Topology</h3><p>To import and upload a DOT or JSON topology file to Air, navigate to <a href=https://air.nvidia.com/simulations>air.nvidia.com/simulations</a>.</p><ol><li>Click <strong>Create Simulation</strong>.</li><li>Provide a name for the simulation.</li><li>Select your desired filetype.</li><li>Upload the file to the UI.</li><li>(Optional) Assign the simulation to an <a href=https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Organizations/>organization</a>.</li><li>(Optional) Add a <a href=#ztp-scripts>ZTP script</a>. Alternately, you can apply a ZTP script within the file.<ol><li>Select <strong>Apply ZTP Template</strong>.</li><li>Enter your ZTP script. A default script is prefilled to help you get started.</li></ol></li><li>(Optional) Click <strong>Advanced</strong> and provide an out-of-band management server configuration script that executes on the <code>oob-mgmt-server</code> when the simulation starts.</li><li>Click <strong>Create</strong>.</li></ol><p><img src=/images/guides/nvidia-air/ImportJSON.png alt width height><br><br>Air redirects you to the <a href=https://docs.nvidia.com/networking-ethernet-software/nvidia-air/Custom-Topology/#the-drag-and-drop-topology-builder>topology builder</a> with your custom topology created. You can continue to make adjustments as necessary.</p><h3 id=export-a-topology>Export a Topology</h3><p>You can export the topology for any existing simulation as a JSON file. From the <strong>Topology</strong> tab, select <strong>Export Simulation</strong> to export the topology file.</p><img src=/images/guides/nvidia-air/ExportSimulation.png alt width height><h3 id=storage-limits>Storage Limits</h3><p>If you increase the storage of a node higher than its default, and Air does not recognize the increased storage, run the following commands <strong>on the affected node</strong> (not the <code>oob-mgmt-server</code>) to extend the partition and resize the file system:</p><pre><code>sudo growpart /dev/vda 1
+sudo resize2fs /dev/vda1
+</code></pre><p>Verify the change:</p><pre><code>df -h | grep vda1
+/dev/vda1        20G  2.1G   18G  11% /
+</code></pre><h2 id=import-a-topology-with-the-api>Import a Topology with the API</h2><p>You can import JSON formatted topologies through the API.</p><div class=book-tabs><input type=radio class=hidden name="tabs-TabID110 " id="tabs-TabID110 -0" checked>
+<label for="tabs-TabID110 -0">Example 1</label><div class="book-tabs-content markdown-inner"><p>The following topology defines two nodes (<code>node-1</code> and <code>node-2</code>) connected to each other through <code>eth1</code> interfaces. The out-of-band management network is enabled by default.</p><pre><code>{
+    &quot;nodes&quot;: {
+        &quot;node-1&quot;: {
+            &quot;os&quot;: &quot;generic/ubuntu2204&quot;
+        },
+        &quot;node-2&quot;: {
+            &quot;os&quot;: &quot;generic/ubuntu2204&quot;
+        }
+    },
+    &quot;links&quot;: [
+        [{&quot;node&quot;: &quot;node-1&quot;, &quot;interface&quot;: &quot;eth1&quot;}, {&quot;node&quot;: &quot;node-2&quot;, &quot;interface&quot;: &quot;eth1&quot;}]
+    ]
+}
+</code></pre></div><input type=radio class=hidden name="tabs-TabID110 " id="tabs-TabID110 -1">
+<label for="tabs-TabID110 -1">Example 2</label><div class="book-tabs-content markdown-inner"><p>The following topology defines two nodes (<code>node-1</code> and <code>node-2</code>) connected to each other through <code>eth1</code> interfaces. The out-of-band management network is disabled (<code>"oob": false</code>). The example includes:</p><ul><li>Custom values for configurable node fields (<code>cpu</code>, <code>memory</code>, <code>storage</code>)</li><li>A public-facing interface (with a custom <code>mac</code> address) to the outside world (<code>eth2</code> of <code>node-1</code>)</li><li>A reference to the <code>os</code> image by specific UUID (<code>node-2</code>)</li></ul><pre><code>{
+    &quot;oob&quot;: false,
+    &quot;nodes&quot;: {
+        &quot;node-1&quot;: {
+            &quot;os&quot;: &quot;generic/ubuntu2204&quot;,
+            &quot;cpu&quot;: 2,
+            &quot;memory&quot;: 2048
+        },
+        &quot;node-2&quot;: {
+            &quot;os&quot;: &quot;defb3ffc-e29b-4d3a-a5fb-41ed1974f938&quot;,
+            &quot;memory&quot;: 2048,
+            &quot;storage&quot;: 25
+        }
+    },
+    &quot;links&quot;: [
+        [{&quot;node&quot;: &quot;node-1&quot;, &quot;interface&quot;: &quot;eth1&quot;}, {&quot;node&quot;: &quot;node-2&quot;, &quot;interface&quot;: &quot;eth1&quot;}],
+        [{&quot;node&quot;: &quot;node-1&quot;, &quot;interface&quot;: &quot;eth2&quot;, &quot;mac&quot;: &quot;02:00:00:00:00:07&quot;}, &quot;exit&quot;]
+    ]
+}
+</code></pre></div></div><p>For additional schemas, refer to the <a href=https://air.nvidia.com/api/#/v2/v2_simulations_import_create>API documentation</a>.</p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+Import Instructions</span></div><div class=expand-content style=display:none><p>To import a topology, use the following APIv2 SDK method:</p><pre><code>from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='&lt;username&gt;',
+    password='&lt;password-or-token&gt;',
+)
+simulation = air.simulations.create_from(
+    title='&lt;simulation-name&gt;',
+    format='JSON',
+    content=&lt;topology-content&gt;,
+    organization=&lt;optional-organization&gt;
+)
+</code></pre><div class="notices info"><p><p>This feature requires SDK version <code>air-sdk>=2.14.0</code> or later.</p></p></div><p>You can also use the following methods to provide topology content:</p><div class=book-tabs><input type=radio class=hidden name="tabs-TabID111 " id="tabs-TabID111 -0" checked>
+<label for="tabs-TabID111 -0">Python Dictionary</label><div class="book-tabs-content markdown-inner"><pre><code>simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    {
+        'nodes': {
+            'node-1': {
+                'os': 'generic/ubuntu2204',
+            },
+            'node-2': {
+                'os': 'generic/ubuntu2204',
+            },
+        },
+        'links': [
+            [{'node': 'node-1', 'interface': 'eth1'}, {'node': 'node-2', 'interface': 'eth1'}]
+        ]
+    },
+)
+</code></pre></div><input type=radio class=hidden name="tabs-TabID111 " id="tabs-TabID111 -1">
+<label for="tabs-TabID111 -1">JSON String</label><div class="book-tabs-content markdown-inner"><pre><code>simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    '{&quot;nodes&quot;: {&quot;node-1&quot;: {&quot;os&quot;: &quot;generic/ubuntu2204&quot;}, &quot;node-2&quot;: {&quot;os&quot;: &quot;generic/ubuntu2204&quot;}}, &quot;links&quot;: [[{&quot;node&quot;: &quot;node-1&quot;, &quot;interface&quot;: &quot;eth1&quot;}, {&quot;node&quot;: &quot;node-2&quot;, &quot;interface&quot;: &quot;eth1&quot;}]]}'
+)
+</code></pre></div><input type=radio class=hidden name="tabs-TabID111 " id="tabs-TabID111 -2">
+<label for="tabs-TabID111 -2">File Path</label><div class="book-tabs-content markdown-inner"><pre><code>import pathlib
+simulation = air.simulations.create_from(
+    'my-simulation',
+    'JSON',
+    pathlib.Path('/path/to/topology.json')
+)
+</code></pre></div><input type=radio class=hidden name="tabs-TabID111 " id="tabs-TabID111 -3">
+<label for="tabs-TabID111 -3">File Descriptor</label><div class="book-tabs-content markdown-inner"><pre><code>import pathlib
+with pathlib.Path('/path/to/topology.json').open('r') as topology_file:
+    simulation = air.simulations.create_from(
+        'my-simulation',
+        'JSON',
+        topology_file
+    )
+</code></pre></div></div></div></div><h2 id=export-a-topology-through-the-api>Export a Topology through the API</h2><p>You can export existing simulations into a JSON representation using the API. Refer to the <a href=https://air.nvidia.com/api/#/v2/v2_simulations_export_retrieve>API documentation</a> for additional schema details.</p><div class=expand-sc><div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})"><span><strong>&#9660;</strong>
+Export Instructions</span></div><div class=expand-content style=display:none><p>Use the API v2 SDK to export a simulation:</p><pre><code>from air_sdk.v2 import AirApi
+
+air = AirApi(
+    authenticate=True,
+    username='&lt;username&gt;',
+    password='&lt;password-or-token&gt;',
+)
+topology = air.simulations.export(
+    simulation='&lt;simulation-instance-or-id&gt;',
+    format='JSON',
+    image_ids=True,  # defaults to False
+)
+</code></pre><div class="notices info"><p><p>This feature requires SDK version <code>air-sdk>=2.15.0</code> or later.</p></p></div></div></div><h2 id=create-a-custom-topology-from-the-production-network>Create a Custom Topology from the Production Network</h2><p>This section describes how to create a simulation based on an existing production deployment.</p><div class="notices infonopad"><p><p>NVIDIA has validated these scripts in a Linux environment only.</p></p></div><h3 id=gather-cl-support-from-the-production-network>Gather cl-support from the Production Network</h3><p>Use <a href=https://gitlab.com/cumulus-consulting/features/cl_support_ansible>these Ansible playbooks</a> to gather the <code>cl-support</code> script output. The <code>ReadMe</code> for the repository provides additional instructions.</p><h3 id=create-topologydot-from-the-production-network>Create topology.dot from the Production Network</h3><p>After you obtain the <code>cl-support</code> output, you can create a <code>topology.dot</code> file using <a href=https://gitlab.com/cumulus-consulting/features/cl_support_lldp_parser>this parser script</a>. You can run the script using <code>python3</code>. Here is sample output:</p><pre><code>$ python3 cl_support_lldp_parser.py
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf01_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_spine02_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_leaf02_20210721_164553.txz
+Extracting: /home/cumulus/cl_support_lldp_parser/cl_support_spine01_20210721_084129.txz
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_leaf01_20210721_164553
+leaf01
+    leaf01:eth0 -- oob-mgmt-switch:swp2
+    leaf01:swp31 -- spine01:swp1
+    leaf01:swp32 -- spine02:swp1
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_spine02_20210721_164553
+spine02
+    spine02:eth0 -- oob-mgmt-switch:swp6
+    spine02:swp1 -- leaf01:swp32
+    spine02:swp2 -- leaf02:swp32
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_leaf02_20210721_164553
+leaf02
+    leaf02:eth0 -- oob-mgmt-switch:swp4
+    leaf02:swp31 -- spine01:swp2
+    leaf02:swp32 -- spine02:swp2
+folder is: /home/cumulus/cl_support_lldp_parser/cl_support_spine01_20210721_084129
+spine01
+    spine01:eth0 -- oob-mgmt-switch:swp5
+    spine01:swp1 -- leaf01:swp31
+    spine01:swp2 -- leaf02:swp31
+DOTFILE: cl_support_lldp_parser.dot
+</code></pre><p>The command writes the output to the <code>cl_support_lldp_parser.dot</code> file. You need to manually edit this file to define the node versions and clean up any extra configurations:</p><pre><code>$ cat cl_support_lldp_parser.dot
+graph dc1 {
+&quot;leaf01&quot; [function=&quot;leaf&quot; ]
+&quot;oob-mgmt-switch&quot; [function=&quot;leaf&quot; ]
+&quot;spine01&quot; [function=&quot;leaf&quot; ]
+&quot;spine02&quot; [function=&quot;leaf&quot; ]
+&quot;leaf02&quot; [function=&quot;leaf&quot; ]
+    &quot;leaf01&quot;:&quot;eth0&quot; -- &quot;oob-mgmt-switch&quot;:&quot;swp2&quot;
+    &quot;leaf01&quot;:&quot;swp31&quot; -- &quot;spine01&quot;:&quot;swp1&quot;
+    &quot;leaf01&quot;:&quot;swp32&quot; -- &quot;spine02&quot;:&quot;swp1&quot;
+    &quot;spine02&quot;:&quot;eth0&quot; -- &quot;oob-mgmt-switch&quot;:&quot;swp6&quot;
+    &quot;spine02&quot;:&quot;swp2&quot; -- &quot;leaf02&quot;:&quot;swp32&quot;
+    &quot;leaf02&quot;:&quot;eth0&quot; -- &quot;oob-mgmt-switch&quot;:&quot;swp4&quot;
+    &quot;leaf02&quot;:&quot;swp31&quot; -- &quot;spine01&quot;:&quot;swp2&quot;
+    &quot;spine01&quot;:&quot;eth0&quot; -- &quot;oob-mgmt-switch&quot;:&quot;swp5&quot;
+}
+</code></pre><h3 id=restore-configuration-files>Restore Configuration Files</h3><p>After you create the simulation, you can restore the configuration files. This <a href=https://gitlab.com/cumulus-consulting/features/cl_support_file_extractor>python script</a>
+extracts relevant files and collates them into folders which you can use to restore configurations. You can also use the <a href=https://gitlab.com/cumulus-consulting/features/simple-iac>infrastructure-as-code</a> Ansible playbook to restore configurations.</p></article></div><aside class="book-toc fixed"><div class=toc><button>
+<a href=https://github.com/CumulusNetworks/docs/edit/stage/content/nvidia-air/Custom-Topology.md target=_blank rel=noopener><img src=/svg/pencil-circle.svg alt=Edit> Edit this page</a></button><p style=padding-left:27px;font-weight:500;color:#36424a>This page discusses:</p><nav id=TableOfContents><ul><li><ul><li><a href=#the-drag-and-drop-topology-builder>The Drag-and-Drop Topology Builder</a><ul><li><a href=#ztp-scripts>ZTP Scripts</a></li><li><a href=#manage-nodes>Manage Nodes</a></li><li><a href=#oob-management-network>OOB Management Network</a></li></ul></li><li><a href=#importing-custom-topologies-with-external-files>Importing Custom Topologies with External Files</a><ul><li><a href=#json>JSON</a><ul><li><a href=#custom-oob-management-network-resources>Custom OOB Management Network Resources</a></li><li><a href=#custom-netq-node>Custom NetQ Node</a></li></ul></li><li><a href=#dot>DOT</a><ul><li><a href=#operating-system>Operating System</a></li><li><a href=#disk-space>Disk Space</a></li><li><a href=#cpu>CPU</a></li><li><a href=#create-connections>Create Connections</a></li><li><a href=#memory>Memory</a></li></ul></li><li><a href=#examples>Examples</a></li><li><a href=#import-a-topology>Import a Topology</a></li><li><a href=#export-a-topology>Export a Topology</a></li><li><a href=#storage-limits>Storage Limits</a></li></ul></li><li><a href=#import-a-topology-with-the-api>Import a Topology with the API</a></li><li><a href=#export-a-topology-through-the-api>Export a Topology through the API</a></li><li><a href=#create-a-custom-topology-from-the-production-network>Create a Custom Topology from the Production Network</a><ul><li><a href=#gather-cl-support-from-the-production-network>Gather cl-support from the Production Network</a></li><li><a href=#create-topologydot-from-the-production-network>Create topology.dot from the Production Network</a></li><li><a href=#restore-configuration-files>Restore Configuration Files</a></li></ul></li></ul></li></ul></nav></div></aside></main></div><footer class=footer-top style=margin-top:0><div class=container><div class=row><div class=col-12><div class=footer-content><div class=mb-4><img src=/images/nvidia-logo-white.svg><p>© 2025&nbsp;&nbsp;NVIDIA Corporation.</p></div><ul class=mb-4><li><h4 class="text-jade mb-3">Products</h4></li><li><a href=https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/>NVIDIA Cumulus Linux</a></li><li><a href=https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/>NVIDIA NetQ</a></li><li><a href=https://docs.nvidia.com/networking-ethernet-software/nvidia-air/>NVIDIA Air</a></li></ul><ul class=mb-4><li><h4 class="text-jade mb-3">Solutions</h4></li><li><a href=https://www.nvidia.com/en-us/networking/network-automation/>Automation</a></li><li><a href=https://www.nvidia.com/en-us/networking/network-virtualization/>Network Virtualization</a></li><li><a href=https://www.nvidia.com/en-us/networking/hyperconverged-infrastructure/>HCI</a></li></ul><ul class=mb-4><li><h4 class="text-jade mb-3">Learn</h4></li><li><a href=https://www.nvidia.com/en-us/networking/education/web-scale/>Going web-scale</a></li><li><a href=https://www.nvidia.com/en-us/about-nvidia/webinar-portal/>Webinars</a></li><li><a href=https://developer.nvidia.com/blog/>Blog</a></li></ul><ul></ul></div></div></div></div></footer><div class=footer-bottom><div class=container><div class=row><div class=col-14><ul><p>Copyright © 2025&nbsp;&nbsp;NVIDIA Corporation</p></ul><ul><li><a href=//www.nvidia.com/en-us/about-nvidia/privacy-policy/ target=_blank>Privacy Policy |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/about-nvidia/privacy-center/ target=_blank>Manage My Privacy |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/preferences/start/ target=_blank>Do Not Sell or Share My Data |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/about-nvidia/terms-of-service/ target=_blank>Terms of Service |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/about-nvidia/accessibility/ target=_blank>Accessibility |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/about-nvidia/company-policies/ target=_blank>Corporate Policies |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/security/ target=_blank>Product Security |&nbsp;</a></li><li><a href=//www.nvidia.com/en-us/contact/ target=_blank>Contact</a></li></ul></div></div></div></div></body></html>
