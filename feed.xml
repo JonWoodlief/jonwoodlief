@@ -5,8 +5,16 @@
     <link>https://jonwoodlief.github.io/jonwoodlief/</link>
     <description>Thoughts on AI, APIs, and software engineering</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Jul 2025 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jan 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://jonwoodlief.github.io/jonwoodlief/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>AI as the Engine of Application State</title>
+      <link>https://jonwoodlief.github.io/jonwoodlief/ai-app-state.html</link>
+      <guid isPermaLink="true">https://jonwoodlief.github.io/jonwoodlief/ai-app-state.html</guid>
+      <pubDate>Thu, 09 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Using AI to drive your application workflows can simplify development and give incredible flexibility to the user.</description>
+    </item>
     
     <item>
       <title>Bring Your Own MCP</title>
