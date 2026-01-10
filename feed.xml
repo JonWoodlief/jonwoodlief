@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jon Woodlief's Blog</title>
+    <link>https://jonwoodlief.github.io/jonwoodlief/</link>
+    <description>Thoughts on AI, APIs, and software engineering</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Jul 2025 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://jonwoodlief.github.io/jonwoodlief/feed.xml" rel="self" type="application/rss+xml"/>
+    
+    <item>
+      <title>Bring Your Own MCP</title>
+      <link>https://jonwoodlief.github.io/jonwoodlief/bring-your-own-mcp.html</link>
+      <guid isPermaLink="true">https://jonwoodlief.github.io/jonwoodlief/bring-your-own-mcp.html</guid>
+      <pubDate>Thu, 24 Jul 2025 00:00:00 GMT</pubDate>
+      <description>AI assistants should do more than chat, they should actively assist users in performing tasks. Embedding MCP in the front end allows you to provide an AI agent the tools your users need when they need it.</description>
+    </item>
+    
+    <item>
+      <title>The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity</title>
+      <link>https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html</link>
+      <guid isPermaLink="true">https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html</guid>
+      <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
+      <description>Most REST APIs today are incomplete. We build APIs that expose resources (Level 1) and use HTTP verbs correctly (Level 2), but we stop there. We skip Level 3 - the one that tells clients what they can actually do next.</description>
+    </item>
+    
+  </channel>
+</rss>

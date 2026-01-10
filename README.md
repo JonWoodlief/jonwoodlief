@@ -4,6 +4,8 @@
 - [Bring Your Own MCP](https://jonwoodlief.github.io/jonwoodlief/bring-your-own-mcp.html) (July 2025)
 - [The Missing Level in REST: API Discoverability from Academic Ideal to AI Necessity](https://jonwoodlief.github.io/jonwoodlief/rest3-mcp.html) (July 2025)
 
+[![RSS Feed](https://img.shields.io/badge/RSS-Subscribe-orange?logo=rss)](https://jonwoodlief.github.io/jonwoodlief/feed.xml)
+
 ## Links
 
 - [github](https://github.com/JonWoodlief/)
