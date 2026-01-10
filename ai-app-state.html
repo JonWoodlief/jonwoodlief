@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI as the Engine of Application State</title>
+    <style>
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: local('Berkeley Mono');
+        }
+        
+        body {
+            font-family: 'Berkeley Mono', 'SF Mono', 'Menlo', monospace;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #eaeaea;
+            color: #232322;
+            font-size: 16px;
+        }
+        
+        h1 {
+            color: #232322;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: #0e717c;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        h2 {
+            color: #232322;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #16afca;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+        
+        a {
+            color: #16afca;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        code {
+            background-color: #d9d9d9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Berkeley Mono', 'SF Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .screenshot {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        
+        .caption {
+            text-align: center;
+            color: #424242;
+            font-size: 0.85em;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        .callout {
+            background-color: #d9d9d9;
+            border-left: 3px solid #f6981e;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .date {
+            color: #424242;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #c2c2c2;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI as the Engine of Application State</h1>
+    <div class="subtitle">Using AI to drive your application workflows can simplify development and give incredible flexibility to the user</div>
+    <div class="date">January 2026</div>
+
+    <p>I have been all in on agentic coding recently. It allows me to focus on the parts of programming I'm really interested in—mostly systems design and data structures—while greatly speeding up the implementation phase. One tool that I've found very helpful is git worktrees, which enables me to create new directories for feature branches on my applications, so that I can have multiple explorations going on against the same repo without risk of collision.</p>
+
+    <p>Of course, doing development in worktrees adds some overhead, including keeping track of all of these directories and what state they're in. This led me to build an application to manage these worktrees and their agentic coding sessions.</p>
+
+    <img src="ai-orchestrator-main.png" alt="AI Orchestrator showing embedded terminals" class="screenshot">
+    <p class="caption">Sidenote: I'm using <a href="https://mitchellh.com/writing/libghostty-is-coming">libghostty</a> to build this. It isn't released yet but I pulled it from the Ghostty source code and it's amazing.</p>
+
+    <p>This seemed daunting at first. I'd need a UI to create and edit the tasks, create and manage the worktrees, orchestrate merges, and so on.</p>
+
+    <p>While mocking the application up, I decided to model the task list and worktrees as files on my Unix filesystem, and use an AI agent to manage it. I quickly realized that this was an incredible interface for my application—it was fast, reliable, and easily extensible. If I had problems with the behavior, I could simply edit the prompt or the <code>AGENTS.md</code> file.</p>
+
+    <h2>Data Structures Over Code</h2>
+
+    <p>There's a Linus Torvalds quote I keep coming back to:</p>
+
+    <div class="callout">
+        "Bad programmers worry about the code. Good programmers worry about data structures and their relationships."
+    </div>
+
+    <p>With AI as the engine of application state, this becomes literally true. I defined the data structures—tasks, worktrees, their relationships—and documented them in a markdown file. The AI handles everything else. All the plumbing that would normally connect a UI to those data structures, the agent figures out dynamically.</p>
+
+    <h2>Flexibility</h2>
+
+    <p>This is where the approach really shines. When I want to change a workflow, I edit the documentation. Want a different merge process? Update the instructions. Want stricter validation? Add a constraint. The agent reads the updated docs and adapts.</p>
+
+    <p>Users who can write documentation can customize their workflows. No code changes, no deployments.</p>
+
+    <h2>The Catch</h2>
+
+    <p>The challenge with this approach is sourcing the AI. Most people access AI through vendor APIs, and integrating that into your application has real friction—API keys, subscriptions, security implications of giving authentication to third-party systems.</p>
+
+    <p>My bigger concern is that people will source AI from closed systems that won't offer interoperability. This feels similar to how the internet has developed, with most content flowing into walled gardens like YouTube, Instagram, and Discord rather than the open web. If AI follows the same pattern—proprietary models, closed ecosystems, vendor lock-in—we'll lose the flexibility that makes this approach powerful in the first place.</p>
+
+    <hr class="divider">
+
+    <p>For now, this works well for developer tools and personal productivity apps where you control the environment. The real question is whether AI remains open enough for this pattern to scale beyond that.</p>
+
+</body>
+</html>
