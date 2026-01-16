@@ -12,3 +12,4 @@
 - [github](https://github.com/JonWoodlief/)
 - [linkedin](https://www.linkedin.com/in/jonwoodlief/)
 - [golf](https://jonwoodlief.com/golf)
+- [Managing software catalogs in hybrid and multi-cloud environments](https://patents.justia.com/patent/12047435)
