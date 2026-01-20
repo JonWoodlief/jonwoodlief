@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jon Woodlief</title>
+    <link rel="alternate" type="application/rss+xml" title="Jon Woodlief's Blog RSS Feed" href="https://jonwoodlief.github.io/jonwoodlief/feed.xml">
+    <style>
+        @font-face {
+            font-family: 'Berkeley Mono';
+            src: local('Berkeley Mono');
+        }
+
+        :root {
+            --bg-primary: #eaeaea;
+            --bg-secondary: #d9d9d9;
+            --text-primary: #232322;
+            --text-secondary: #424242;
+            --text-tertiary: #666666;
+            --accent: #16afca;
+            --accent-hover: #0e717c;
+            --accent-orange: #f6981e;
+            --border: #c2c2c2;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Berkeley Mono', 'Geist Mono', 'SF Mono', 'Menlo', monospace;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 15px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .site-header {
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .site-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+        }
+
+        .site-subtitle {
+            font-size: 0.85em;
+            color: var(--text-tertiary);
+            margin: 0 0 12px 0;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .header-links a {
+            color: var(--text-tertiary);
+            font-size: 0.85em;
+        }
+
+        .header-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Content sections */
+        h2 {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 40px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Links list */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* Blog post links with dates */
+        .post-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+        }
+
+        .post-title {
+            flex: 1;
+        }
+
+        .post-date {
+            font-size: 0.85em;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+        }
+
+        /* RSS badge */
+        .rss-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            padding: 6px 12px;
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+
+        .rss-link:hover {
+            background-color: var(--accent-orange);
+            color: white;
+        }
+
+        .rss-icon {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Simple links section */
+        .simple-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .simple-links a {
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .simple-links a::before {
+            content: "→";
+            margin-right: 6px;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .simple-links a:hover::before {
+            opacity: 1;
+        }
+
+        .simple-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--border);
+            font-size: 0.85em;
+            color: var(--text-tertiary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .post-link {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .simple-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <h1 class="site-title">Jon Woodlief</h1>
+            <p class="site-subtitle">Software Engineering | AI | Reliability | Security</p>
+            <nav class="header-links">
+                <a href="https://github.com/JonWoodlief/">github</a>
+                <a href="https://www.linkedin.com/in/jonwoodlief/">linkedin</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Blog</h2>
+            <ul>
+                <li>
+                    <div class="post-link">
+                        <a href="ai-app-state.html" class="post-title">AI as the Engine of Application State</a>
+                        <span class="post-date">January 2026</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-link">
+                        <a href="bring-your-own-mcp.html" class="post-title">Bring Your Own MCP</a>
+                        <span class="post-date">July 2025</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-link">
+                        <a href="rest3-mcp.html" class="post-title">The Missing Level in REST: API Discoverability</a>
+                        <span class="post-date">July 2025</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="post-link">
+                        <a href="https://medium.com/@jon13w/chaos-testing-with-https-fault-injection-using-istio-3ccede7c8a5c" class="post-title">Chaos Testing with HTTPS Fault Injection Using Istio</a>
+                        <span class="post-date">April 2024</span>
+                    </div>
+                </li>
+            </ul>
+
+            <a href="feed.xml" class="rss-link">
+                <svg class="rss-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="6.18" cy="17.82" r="2.18"/>
+                    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z"/>
+                </svg>
+                Subscribe via RSS
+            </a>
+
+            <h2>Other</h2>
+            <ul>
+                <li><a href="golf/index.html">Golf</a></li>
+                <li><a href="https://patents.justia.com/patent/12047435">Patent: Managing software catalogs in hybrid and multi-cloud environments</a></li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>
